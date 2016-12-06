@@ -8,9 +8,13 @@ FRANCAIS :
 xx
 #Matrice
 k|k|k|k
+
 k|k|k|k
+
 k|k|k|k
+
 k|k|k|k
+
 
 ~> Les mots après le signe '#' n'ont pas d'importance.
 ~> Le x représente un ENTIER
@@ -34,8 +38,11 @@ ENGLISH :
 xx
 #Matrix
 k | k | k | k
-k | k | k | k 
+
 k | k | k | k
+
+k | k | k | k
+
 k | k | k | k
 
 ~> The words after the '#' sign do not matter.
