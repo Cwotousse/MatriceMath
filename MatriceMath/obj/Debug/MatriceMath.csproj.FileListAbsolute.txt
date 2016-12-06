@@ -1,0 +1,6 @@
+F:\BAC3\Math\MatriceMath\MatriceMath\bin\Debug\MatriceMath.exe.config
+F:\BAC3\Math\MatriceMath\MatriceMath\bin\Debug\MatriceMath.exe
+F:\BAC3\Math\MatriceMath\MatriceMath\bin\Debug\MatriceMath.pdb
+F:\BAC3\Math\MatriceMath\MatriceMath\obj\Debug\MatriceMath.csprojResolveAssemblyReference.cache
+F:\BAC3\Math\MatriceMath\MatriceMath\obj\Debug\MatriceMath.exe
+F:\BAC3\Math\MatriceMath\MatriceMath\obj\Debug\MatriceMath.pdb

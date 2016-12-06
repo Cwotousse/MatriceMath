@@ -1,0 +1,10 @@
+
+
+┌─┐
+
+│1│ Le fichier contenant la matrice est : 
+
+└─┘
+
+
+

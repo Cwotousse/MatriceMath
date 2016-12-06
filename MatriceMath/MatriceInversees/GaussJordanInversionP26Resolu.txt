@@ -1,0 +1,1116 @@
+
+-> début de Gauss.
+
+-> Matrice de départ :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[1,000]      [0,000]      [1,000]}
+{[1,000]      [-1,000]     [1,000]}
+
+
+
+Etape N°1
+
+~~~~~~~~~
+
+
+m[2][1] = -0,5
+
+La ligne 2 transformée -> {[0,000]      [-2,500]     [2,500]}
+
+m[3][1] = -0,5
+
+La ligne 3 transformée -> {[0,000]      [-3,500]     [2,500]}
+
+Matrice U après l'étape 1 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [-3,500]     [2,500]}
+
+
+Matrice L après l'étape 1 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [0,000]      [1,000]}
+
+
+
+Etape N°2
+
+~~~~~~~~~
+
+
+m[3][2] = 1,4
+
+La ligne 3 transformée -> {[0,000]      [0,000]      [-1,000]}
+
+Matrice U après l'étape 2 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 2 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Etape N°3
+
+~~~~~~~~~
+
+
+Matrice U après l'étape 3 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 3 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+Matrice U finale :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L finale :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+-> Il n'y a pas eu de permutation.
+
+-> Gauss finalisé.
+
+
+-> Inversion de la matrice L
+
+-> Matrice de départ (m):
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Multiplié par la matrice x : 
+
+{x11       x12       x13}
+{x21       x22       x23}
+{x31       x32       x33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+x11 = 1
+
+x12 = 0
+
+x13 = 0
+
+~> Calcul effectué en postition [2,1] =>> 0 - (-0,5 * 1)
+
+x21 = 0,5
+
+~> Calcul effectué en postition [2,2] =>> 1 - (-0,5 * 0)
+
+x22 = 1
+
+~> Calcul effectué en postition [2,3] =>> 0 - (-0,5 * 0)
+
+x23 = 0
+
+~> Calcul effectué en postition [3,1] =>> 0 - (-0,5 * 1)
+
+~> Calcul effectué en postition [3,1] =>> 0,5 - (1,4 * 0,5)
+
+x31 = -0,2
+
+~> Calcul effectué en postition [3,2] =>> 0 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,2] =>> 0 - (1,4 * 1)
+
+x32 = -1,4
+
+~> Calcul effectué en postition [3,3] =>> 1 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,3] =>> 1 - (1,4 * 0)
+
+x33 = 1
+
+
+Matrice x après calcul : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,500]      [1,000]      [0,000]}
+{[-0,200]     [-1,400]     [1,000]}
+
+
+
+-> Inversion de la matrice U
+
+-> Matrice de départ (u):
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Multiplié par la matrice y : 
+
+{y11       y12       y13}
+{y21       y22       y23}
+{y31       y32       y33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+y31 = 0
+
+y32 = 0
+
+y33 = -1
+
+~> Calcul effectué en postition [2,1] =>> 0 - ((2,5 * 0)/-2,5)
+
+y21 = 0
+
+~> Calcul effectué en postition [2,2] =>> 1 - ((2,5 * 0)/-2,5)
+
+y22 = 1
+
+~> Calcul effectué en postition [2,3] =>> 0 - ((2,5 * -1)/-2,5)
+
+y23 = -1
+
+~> Calcul effectué en postition [1,1] =>> 1 - ((3 * 0)/-2)
+
+~> Calcul effectué en postition [1,1] =>> 1 - ((-5 * 0)/-2)
+
+y11 = 1
+
+~> Calcul effectué en postition [1,2] =>> 0 - ((3 * 0)/-2)
+
+~> Calcul effectué en postition [1,2] =>> 0 - ((-5 * 1)/-2)
+
+y12 = -2,5
+
+~> Calcul effectué en postition [1,3] =>> 0 - ((3 * -1)/-2)
+
+~> Calcul effectué en postition [1,3] =>> -1,5 - ((-5 * -1)/-2)
+
+y13 = 1
+
+
+Matrice y après calcul : 
+
+
+{[1,000]      [-2,500]     [1,000]}
+{[0,000]      [1,000]      [-1,000]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Calcul de l'inverse de la matrice A : 
+
+
+{[-0,450]     [-3,900]     [1,000]}
+{[0,700]      [2,400]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+
+
+Matrice inverse A remise dans le bon ordre : 
+
+
+{[-0,450]     [-3,900]     [1,000]}
+{[0,700]      [2,400]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+
+
+-> début de Gauss.
+
+-> Matrice de départ :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[1,000]      [0,000]      [1,000]}
+{[1,000]      [-1,000]     [1,000]}
+
+
+
+Etape N°1
+
+~~~~~~~~~
+
+
+m[2][1] = -0,5
+
+La ligne 2 transformée -> {[0,000]      [-2,500]     [2,500]}
+
+m[3][1] = -0,5
+
+La ligne 3 transformée -> {[0,000]      [-3,500]     [2,500]}
+
+Matrice U après l'étape 1 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [-3,500]     [2,500]}
+
+
+Matrice L après l'étape 1 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [0,000]      [1,000]}
+
+
+
+Etape N°2
+
+~~~~~~~~~
+
+
+m[3][2] = 1,4
+
+La ligne 3 transformée -> {[0,000]      [0,000]      [-1,000]}
+
+Matrice U après l'étape 2 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 2 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Etape N°3
+
+~~~~~~~~~
+
+
+Matrice U après l'étape 3 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 3 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+Matrice U finale :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L finale :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+-> Il n'y a pas eu de permutation.
+
+-> Gauss finalisé.
+
+
+-> Inversion de la matrice L
+
+-> Matrice de départ (m):
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Multiplié par la matrice x : 
+
+{x11       x12       x13}
+{x21       x22       x23}
+{x31       x32       x33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+x11 = 1
+
+x12 = 0
+
+x13 = 0
+
+~> Calcul effectué en postition [2,1] =>> 0 - (-0,5 * 1)
+
+x21 = 0,5
+
+~> Calcul effectué en postition [2,2] =>> 1 - (-0,5 * 0)
+
+x22 = 1
+
+~> Calcul effectué en postition [2,3] =>> 0 - (-0,5 * 0)
+
+x23 = 0
+
+~> Calcul effectué en postition [3,1] =>> 0 - (-0,5 * 1)
+
+~> Calcul effectué en postition [3,1] =>> 0,5 - (1,4 * 0,5)
+
+x31 = -0,2
+
+~> Calcul effectué en postition [3,2] =>> 0 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,2] =>> 0 - (1,4 * 1)
+
+x32 = -1,4
+
+~> Calcul effectué en postition [3,3] =>> 1 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,3] =>> 1 - (1,4 * 0)
+
+x33 = 1
+
+
+Matrice x après calcul : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,500]      [1,000]      [0,000]}
+{[-0,200]     [-1,400]     [1,000]}
+
+
+
+-> Inversion de la matrice U
+
+-> Matrice de départ (u):
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Multiplié par la matrice y : 
+
+{y11       y12       y13}
+{y21       y22       y23}
+{y31       y32       y33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+y31 = 0
+
+y32 = 0
+
+y33 = -1
+
+~> Calcul effectué en postition [2,1] =>> (0 - (2,5 * 0)/-2,5)
+
+y21 = 0
+
+~> Calcul effectué en postition [2,2] =>> (1 - (2,5 * 0)/-2,5)
+
+y22 = -0,4
+
+~> Calcul effectué en postition [2,3] =>> (0 - (2,5 * -1)/-2,5)
+
+y23 = -1
+
+~> Calcul effectué en postition [1,1] =>> (1 - (3 * 0)/-2)
+
+~> Calcul effectué en postition [1,1] =>> (-0,5 - (-5 * 0)/-2)
+
+y11 = 0,25
+
+~> Calcul effectué en postition [1,2] =>> (0 - (3 * 0)/-2)
+
+~> Calcul effectué en postition [1,2] =>> (0 - (-5 * -0,4)/-2)
+
+y12 = 1
+
+~> Calcul effectué en postition [1,3] =>> (0 - (3 * -1)/-2)
+
+~> Calcul effectué en postition [1,3] =>> (-1,5 - (-5 * -1)/-2)
+
+y13 = 3,25
+
+
+Matrice y après calcul : 
+
+
+{[0,250]      [1,000]      [3,250]}
+{[0,000]      [-0,400]     [-1,000]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Calcul de l'inverse de la matrice A : 
+
+
+{[0,100]      [-3,550]     [3,250]}
+{[0,000]      [1,000]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+
+
+Matrice inverse A remise dans le bon ordre : 
+
+
+{[0,100]      [-3,550]     [3,250]}
+{[0,000]      [1,000]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+
+
+-> début de Gauss.
+
+-> Matrice de départ :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[1,000]      [0,000]      [1,000]}
+{[1,000]      [-1,000]     [1,000]}
+
+
+
+Etape N°1
+
+~~~~~~~~~
+
+
+m[2][1] = -0,5
+
+La ligne 2 transformée -> {[0,000]      [-2,500]     [2,500]}
+
+m[3][1] = -0,5
+
+La ligne 3 transformée -> {[0,000]      [-3,500]     [2,500]}
+
+Matrice U après l'étape 1 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [-3,500]     [2,500]}
+
+
+Matrice L après l'étape 1 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [0,000]      [1,000]}
+
+
+
+Etape N°2
+
+~~~~~~~~~
+
+
+m[3][2] = 1,4
+
+La ligne 3 transformée -> {[0,000]      [0,000]      [-1,000]}
+
+Matrice U après l'étape 2 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 2 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Etape N°3
+
+~~~~~~~~~
+
+
+Matrice U après l'étape 3 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 3 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+Matrice U finale :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L finale :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+-> Il n'y a pas eu de permutation.
+
+-> Gauss finalisé.
+
+
+-> Inversion de la matrice L
+
+-> Matrice de départ (m):
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Multiplié par la matrice x : 
+
+{x11       x12       x13}
+{x21       x22       x23}
+{x31       x32       x33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+x11 = 1
+
+x12 = 0
+
+x13 = 0
+
+~> Calcul effectué en postition [2,1] =>> 0 - (-0,5 * 1)
+
+x21 = 0,5
+
+~> Calcul effectué en postition [2,2] =>> 1 - (-0,5 * 0)
+
+x22 = 1
+
+~> Calcul effectué en postition [2,3] =>> 0 - (-0,5 * 0)
+
+x23 = 0
+
+~> Calcul effectué en postition [3,1] =>> 0 - (-0,5 * 1)
+
+~> Calcul effectué en postition [3,1] =>> 0,5 - (1,4 * 0,5)
+
+x31 = -0,2
+
+~> Calcul effectué en postition [3,2] =>> 0 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,2] =>> 0 - (1,4 * 1)
+
+x32 = -1,4
+
+~> Calcul effectué en postition [3,3] =>> 1 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,3] =>> 1 - (1,4 * 0)
+
+x33 = 1
+
+
+Matrice x après calcul : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,500]      [1,000]      [0,000]}
+{[-0,200]     [-1,400]     [1,000]}
+
+
+
+-> Inversion de la matrice U
+
+-> Matrice de départ (u):
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Multiplié par la matrice y : 
+
+{y11       y12       y13}
+{y21       y22       y23}
+{y31       y32       y33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+y31 = 0
+
+y32 = 0
+
+y33 = -1
+
+~> Calcul effectué en postition [2,1] =>> (0 - (2,5 * 0))/-2,5
+
+y21 = 0
+
+~> Calcul effectué en postition [2,2] =>> (1 - (2,5 * 0))/-2,5
+
+y22 = -0,4
+
+~> Calcul effectué en postition [2,3] =>> (0 - (2,5 * -1))/-2,5
+
+y23 = -1
+
+~> Calcul effectué en postition [1,1] =>> (1 - (3 * 0))/-2
+
+~> Calcul effectué en postition [1,1] =>> (-0,5 - (-5 * 0))/-2
+
+y11 = 0,25
+
+~> Calcul effectué en postition [1,2] =>> (0 - (3 * 0))/-2
+
+~> Calcul effectué en postition [1,2] =>> (0 - (-5 * -0,4))/-2
+
+y12 = 1
+
+~> Calcul effectué en postition [1,3] =>> (0 - (3 * -1))/-2
+
+~> Calcul effectué en postition [1,3] =>> (-1,5 - (-5 * -1))/-2
+
+y13 = 3,25
+
+
+Matrice y après calcul : 
+
+
+{[0,250]      [1,000]      [3,250]}
+{[0,000]      [-0,400]     [-1,000]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Calcul de l'inverse de la matrice A : 
+
+
+{[0,100]      [-3,550]     [3,250]}
+{[0,000]      [1,000]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+
+
+Matrice inverse A remise dans le bon ordre : 
+
+
+{[0,100]      [-3,550]     [3,250]}
+{[0,000]      [1,000]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+
+
+-> début de Gauss.
+
+-> Matrice de départ :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[1,000]      [0,000]      [1,000]}
+{[1,000]      [-1,000]     [1,000]}
+
+
+
+Etape N°1
+
+~~~~~~~~~
+
+
+m[2][1] = -0,5
+
+La ligne 2 transformée -> {[0,000]      [-2,500]     [2,500]}
+
+m[3][1] = -0,5
+
+La ligne 3 transformée -> {[0,000]      [-3,500]     [2,500]}
+
+Matrice U après l'étape 1 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [-3,500]     [2,500]}
+
+
+Matrice L après l'étape 1 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [0,000]      [1,000]}
+
+
+
+Etape N°2
+
+~~~~~~~~~
+
+
+m[3][2] = 1,4
+
+La ligne 3 transformée -> {[0,000]      [0,000]      [-1,000]}
+
+Matrice U après l'étape 2 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 2 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Etape N°3
+
+~~~~~~~~~
+
+
+Matrice U après l'étape 3 :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L après l'étape 3 :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+Matrice U finale :
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+Matrice L finale :
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+-> Il n'y a pas eu de permutation.
+
+-> Gauss finalisé.
+
+
+-> Inversion de la matrice L
+
+-> Matrice de départ (m):
+
+
+{[1,000]      [0,000]      [0,000]}
+{[-0,500]     [1,000]      [0,000]}
+{[-0,500]     [1,400]      [1,000]}
+
+
+
+Multiplié par la matrice x : 
+
+{x11       x12       x13}
+{x21       x22       x23}
+{x31       x32       x33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+x11 = 1
+
+x12 = 0
+
+x13 = 0
+
+~> Calcul effectué en postition [2,1] =>> 0 - (-0,5 * 1)
+
+x21 = 0,5
+
+~> Calcul effectué en postition [2,2] =>> 1 - (-0,5 * 0)
+
+x22 = 1
+
+~> Calcul effectué en postition [2,3] =>> 0 - (-0,5 * 0)
+
+x23 = 0
+
+~> Calcul effectué en postition [3,1] =>> 0 - (-0,5 * 1)
+
+~> Calcul effectué en postition [3,1] =>> 0,5 - (1,4 * 0,5)
+
+x31 = -0,2
+
+~> Calcul effectué en postition [3,2] =>> 0 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,2] =>> 0 - (1,4 * 1)
+
+x32 = -1,4
+
+~> Calcul effectué en postition [3,3] =>> 1 - (-0,5 * 0)
+
+~> Calcul effectué en postition [3,3] =>> 1 - (1,4 * 0)
+
+x33 = 1
+
+
+Matrice x après calcul : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,500]      [1,000]      [0,000]}
+{[-0,200]     [-1,400]     [1,000]}
+
+
+
+-> Inversion de la matrice U
+
+-> Matrice de départ (u):
+
+
+{[-2,000]     [-5,000]     [3,000]}
+{[0,000]      [-2,500]     [2,500]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Multiplié par la matrice y : 
+
+{y11       y12       y13}
+{y21       y22       y23}
+{y31       y32       y33}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,000]      [0,000]      [0,000]}
+{[0,000]      [1,000]      [0,000]}
+{[0,000]      [0,000]      [1,000]}
+
+
+
+-> Début de l'inversion
+
+y31 = 0
+
+y32 = 0
+
+y33 = -1
+
+~> Calcul effectué en postition [2,1] =>> (0 - (2,5 * 0))/-2,5
+
+y21 = 0
+
+~> Calcul effectué en postition [2,2] =>> (-0,4 - (2,5 * 0))/-2,5
+
+y22 = -0,4
+
+~> Calcul effectué en postition [2,3] =>> (0 - (2,5 * -1))/-2,5
+
+y23 = -1
+
+~> Calcul effectué en postition [1,1] =>> (-0,5 - (3 * 0))/-2
+
+~> Calcul effectué en postition [1,1] =>> (-0,5 - (-5 * 0))/-2
+
+y11 = -0,5
+
+~> Calcul effectué en postition [1,2] =>> (0 - (3 * 0))/-2
+
+~> Calcul effectué en postition [1,2] =>> (0 - (-5 * -0,4))/-2
+
+y12 = 1
+
+~> Calcul effectué en postition [1,3] =>> (0 - (3 * -1))/-2
+
+~> Calcul effectué en postition [1,3] =>> (-1,5 - (-5 * -1))/-2
+
+y13 = 1
+
+
+Matrice y après calcul : 
+
+
+{[-0,500]     [1,000]      [1,000]}
+{[0,000]      [-0,400]     [-1,000]}
+{[0,000]      [0,000]      [-1,000]}
+
+
+
+Calcul de l'inverse de la matrice A : 
+
+
+{[-0,200]     [-0,400]     [1,000]}
+{[0,000]      [1,000]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+
+
+Matrice inverse A remise dans le bon ordre : 
+
+
+{[-0,200]     [-0,400]     [1,000]}
+{[0,000]      [1,000]      [-1,000]}
+{[0,200]      [1,400]      [-1,000]}
+
+

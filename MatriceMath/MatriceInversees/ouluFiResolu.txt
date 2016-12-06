@@ -1,0 +1,474 @@
+
+
+┌─┐
+
+│1│ Informations sur le fichier : 
+
+└─┘
+
+
+
+#Nom du fichier : ouluFi.txt
+
+#URL du fichier : ouluFi.txt
+
+
+
+┌─┐
+
+│2│ Matrice de départ :
+
+└─┘
+
+
+
+Precision : 2
+
+
+{[1,00]      [3,00]      [0,00]      [1,00]}
+{[1,00]      [2,00]      [-2,00]     [1,00]}
+{[-2,00]     [-4,00]     [3,00]      [0,00]}
+{[2,00]      [5,00]      [-2,00]     [3,00]}
+
+
+
+
+┌─┐
+
+│3│ Début de Gauss.
+
+└─┘
+
+
+
+
+Etape N°1
+
+~~~~~~~~~
+
+
+m[2][1] = 1
+
+Ligne 2 recalculée ~> {[0,00]      [-1,00]     [-2,00]     [0,00]}
+
+m[3][1] = -2
+
+Ligne 3 recalculée ~> {[0,00]      [2,00]      [3,00]      [2,00]}
+
+m[4][1] = 2
+
+Ligne 4 recalculée ~> {[0,00]      [-1,00]     [-2,00]     [1,00]}
+
+Matrice U après l'étape 1 (3 étapes restantes) :
+
+
+{[1,00]      [3,00]      [0,00]      [1,00]}
+{[0,00]      [-1,00]     [-2,00]     [0,00]}
+{[0,00]      [2,00]      [3,00]      [2,00]}
+{[0,00]      [-1,00]     [-2,00]     [1,00]}
+
+
+Matrice L après l'étape 1 (3 étapes restantes) :
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[1,00]      [1,00]      [0,00]      [0,00]}
+{[-2,00]     [0,00]      [1,00]      [0,00]}
+{[2,00]      [0,00]      [0,00]      [1,00]}
+
+
+
+Etape N°2
+
+~~~~~~~~~
+
+
+m[3][2] = -2
+
+Ligne 3 recalculée ~> {[0,00]      [0,00]      [-1,00]     [2,00]}
+
+m[4][2] = 1
+
+Ligne 4 recalculée ~> {[0,00]      [0,00]      [0,00]      [1,00]}
+
+Matrice U après l'étape 2 (2 étapes restantes) :
+
+
+{[1,00]      [3,00]      [0,00]      [1,00]}
+{[0,00]      [-1,00]     [-2,00]     [0,00]}
+{[0,00]      [0,00]      [-1,00]     [2,00]}
+{[0,00]      [0,00]      [0,00]      [1,00]}
+
+
+Matrice L après l'étape 2 (2 étapes restantes) :
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[1,00]      [1,00]      [0,00]      [0,00]}
+{[-2,00]     [-2,00]     [1,00]      [0,00]}
+{[2,00]      [1,00]      [0,00]      [1,00]}
+
+
+
+Etape N°3
+
+~~~~~~~~~
+
+
+m[4][3] = 0
+
+Ligne 4 recalculée ~> {[0,00]      [0,00]      [0,00]      [1,00]}
+
+Matrice U après l'étape 3 (1 étapes restantes) :
+
+
+{[1,00]      [3,00]      [0,00]      [1,00]}
+{[0,00]      [-1,00]     [-2,00]     [0,00]}
+{[0,00]      [0,00]      [-1,00]     [2,00]}
+{[0,00]      [0,00]      [0,00]      [1,00]}
+
+
+Matrice L après l'étape 3 (1 étapes restantes) :
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[1,00]      [1,00]      [0,00]      [0,00]}
+{[-2,00]     [-2,00]     [1,00]      [0,00]}
+{[2,00]      [1,00]      [0,00]      [1,00]}
+
+
+
+Etape N°4
+
+~~~~~~~~~
+
+
+Matrice U après l'étape 4 (finale) :
+
+
+{[1,00]      [3,00]      [0,00]      [1,00]}
+{[0,00]      [-1,00]     [-2,00]     [0,00]}
+{[0,00]      [0,00]      [-1,00]     [2,00]}
+{[0,00]      [0,00]      [0,00]      [1,00]}
+
+
+Matrice L après l'étape 4 (finale) :
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[1,00]      [1,00]      [0,00]      [0,00]}
+{[-2,00]     [-2,00]     [1,00]      [0,00]}
+{[2,00]      [1,00]      [0,00]      [1,00]}
+
+
+
+
+┌─┐
+
+│4│ Fin de Gauss.
+
+└─┘
+
+
+
+Affichage des résultats :
+
+-> Il n'y a pas eu de permutation.
+
+Déterminant de A : 1
+
+~> La matrice est inversible.
+
+
+
+┌─┐
+
+│5│ -> Inversion de la matrice L
+
+└─┘
+
+
+
+-> Matrice de départ (m):
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[1,00]      [1,00]      [0,00]      [0,00]}
+{[-2,00]     [-2,00]     [1,00]      [0,00]}
+{[2,00]      [1,00]      [0,00]      [1,00]}
+
+
+
+Multiplié par la matrice x : 
+
+{x11       x12       x13       x14}
+{x21       x22       x23       x24}
+{x31       x32       x33       x34}
+{x41       x42       x43       x44}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[0,00]      [1,00]      [0,00]      [0,00]}
+{[0,00]      [0,00]      [1,00]      [0,00]}
+{[0,00]      [0,00]      [0,00]      [1,00]}
+
+
+
+-> Début de l'inversion
+
+x11 = 1
+
+x12 = 0
+
+x13 = 0
+
+x14 = 0
+
+~> Calcul effectué en postition [2,1] =>> 0 - (1 * 1)
+
+x21 = -1
+
+~> Calcul effectué en postition [2,2] =>> 1 - (1 * 0)
+
+x22 = 1
+
+~> Calcul effectué en postition [2,3] =>> 0 - (1 * 0)
+
+x23 = 0
+
+~> Calcul effectué en postition [2,4] =>> 0 - (1 * 0)
+
+x24 = 0
+
+~> Calcul effectué en postition [3,1] =>> 0 - (-2 * 1)
+
+~> Calcul effectué en postition [3,1] =>> 2 - (-2 * -1)
+
+x31 = 0
+
+~> Calcul effectué en postition [3,2] =>> 0 - (-2 * 0)
+
+~> Calcul effectué en postition [3,2] =>> 0 - (-2 * 1)
+
+x32 = 2
+
+~> Calcul effectué en postition [3,3] =>> 1 - (-2 * 0)
+
+~> Calcul effectué en postition [3,3] =>> 1 - (-2 * 0)
+
+x33 = 1
+
+~> Calcul effectué en postition [3,4] =>> 0 - (-2 * 0)
+
+~> Calcul effectué en postition [3,4] =>> 0 - (-2 * 0)
+
+x34 = 0
+
+~> Calcul effectué en postition [4,1] =>> 0 - (2 * 1)
+
+~> Calcul effectué en postition [4,1] =>> -2 - (1 * -1)
+
+~> Calcul effectué en postition [4,1] =>> -1 - (0 * 0)
+
+x41 = -1
+
+~> Calcul effectué en postition [4,2] =>> 0 - (2 * 0)
+
+~> Calcul effectué en postition [4,2] =>> 0 - (1 * 1)
+
+~> Calcul effectué en postition [4,2] =>> -1 - (0 * 2)
+
+x42 = -1
+
+~> Calcul effectué en postition [4,3] =>> 0 - (2 * 0)
+
+~> Calcul effectué en postition [4,3] =>> 0 - (1 * 0)
+
+~> Calcul effectué en postition [4,3] =>> 0 - (0 * 1)
+
+x43 = 0
+
+~> Calcul effectué en postition [4,4] =>> 1 - (2 * 0)
+
+~> Calcul effectué en postition [4,4] =>> 1 - (1 * 0)
+
+~> Calcul effectué en postition [4,4] =>> 1 - (0 * 0)
+
+x44 = 1
+
+
+
+┌─┐
+
+│6│ Matrice x après inversion : 
+
+└─┘
+
+
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[-1,00]     [1,00]      [0,00]      [0,00]}
+{[0,00]      [2,00]      [1,00]      [0,00]}
+{[-1,00]     [-1,00]     [0,00]      [1,00]}
+
+
+
+
+┌─┐
+
+│7│ -> Inversion de la matrice U
+
+└─┘
+
+
+
+-> Matrice de départ (u):
+
+
+{[1,00]      [3,00]      [0,00]      [1,00]}
+{[0,00]      [-1,00]     [-2,00]     [0,00]}
+{[0,00]      [0,00]      [-1,00]     [2,00]}
+{[0,00]      [0,00]      [0,00]      [1,00]}
+
+
+
+Multiplié par la matrice y : 
+
+{y11       y12       y13       y14}
+{y21       y22       y23       y24}
+{y31       y32       y33       y34}
+{y41       y42       y43       y44}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,00]      [0,00]      [0,00]      [0,00]}
+{[0,00]      [1,00]      [0,00]      [0,00]}
+{[0,00]      [0,00]      [1,00]      [0,00]}
+{[0,00]      [0,00]      [0,00]      [1,00]}
+
+
+
+-> Début de l'inversion
+
+y41 = 0
+
+y42 = 0
+
+y43 = 0
+
+y44 = 1
+
+~> Calcul effectué en postition [3,1] =>> (0 - (2 * 0))/-1
+
+y31 = 0
+
+~> Calcul effectué en postition [3,2] =>> (0 - (2 * 0))/-1
+
+y32 = 0
+
+~> Calcul effectué en postition [3,3] =>> (-1 - (2 * 0))/-1
+
+y33 = -1
+
+~> Calcul effectué en postition [3,4] =>> (0 - (2 * 1))/-1
+
+y34 = 2
+
+~> Calcul effectué en postition [2,1] =>> (0 - (0 * 0))/-1
+
+~> Calcul effectué en postition [2,1] =>> (0 - (-2 * 0))/-1
+
+y21 = 0
+
+~> Calcul effectué en postition [2,2] =>> (-1 - (0 * 0))/-1
+
+~> Calcul effectué en postition [2,2] =>> (-1 - (-2 * 0))/-1
+
+y22 = -1
+
+~> Calcul effectué en postition [2,3] =>> (0 - (0 * 0))/-1
+
+~> Calcul effectué en postition [2,3] =>> (0 - (-2 * -1))/-1
+
+y23 = 2
+
+~> Calcul effectué en postition [2,4] =>> (0 - (0 * 1))/-1
+
+~> Calcul effectué en postition [2,4] =>> (0 - (-2 * 2))/-1
+
+y24 = -4
+
+~> Calcul effectué en postition [1,1] =>> (1 - (1 * 0))/1
+
+~> Calcul effectué en postition [1,1] =>> (1 - (0 * 0))/1
+
+~> Calcul effectué en postition [1,1] =>> (1 - (3 * 0))/1
+
+y11 = 1
+
+~> Calcul effectué en postition [1,2] =>> (0 - (1 * 0))/1
+
+~> Calcul effectué en postition [1,2] =>> (0 - (0 * 0))/1
+
+~> Calcul effectué en postition [1,2] =>> (0 - (3 * -1))/1
+
+y12 = 3
+
+~> Calcul effectué en postition [1,3] =>> (0 - (1 * 0))/1
+
+~> Calcul effectué en postition [1,3] =>> (0 - (0 * -1))/1
+
+~> Calcul effectué en postition [1,3] =>> (0 - (3 * 2))/1
+
+y13 = -6
+
+~> Calcul effectué en postition [1,4] =>> (0 - (1 * 1))/1
+
+~> Calcul effectué en postition [1,4] =>> (-1 - (0 * 2))/1
+
+~> Calcul effectué en postition [1,4] =>> (-1 - (3 * -4))/1
+
+y14 = 11
+
+
+
+┌─┐
+
+│8│ Matrice y après inversion : 
+
+└─┘
+
+
+
+
+{[1,00]      [3,00]      [-6,00]     [11,00]}
+{[0,00]      [-1,00]     [2,00]      [-4,00]}
+{[0,00]      [0,00]      [-1,00]     [2,00]}
+{[0,00]      [0,00]      [0,00]      [1,00]}
+
+
+
+
+┌─┐
+
+│9│ Calcul de l'inverse de la matrice A : 
+
+└─┘
+
+
+
+
+{[-13,00]    [-20,00]    [-6,00]     [11,00]}
+{[5,00]      [7,00]      [2,00]      [-4,00]}
+{[-2,00]     [-4,00]     [-1,00]     [2,00]}
+{[-1,00]     [-1,00]     [0,00]      [1,00]}
+
+
