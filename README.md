@@ -17,8 +17,12 @@ k|k|k|k
 
 
 ~> Les mots après le signe '#' n'ont pas d'importance.
+
 ~> Le x représente un ENTIER
+
 ~> le K représente :
+
+
 	- Un double;
 	- Il peut être négatif ou positif.
 	- Il peut aussi être à virgule ','. (PAS DE '.')
@@ -46,8 +50,11 @@ k | k | k | k
 k | k | k | k
 
 ~> The words after the '#' sign do not matter.
+
 ~> The x represents an INTEGER
+
 ~> K represents:
+
 - A double;
 - It may be negative or positive.
 - It can also use a comma ','. (NO '.')
