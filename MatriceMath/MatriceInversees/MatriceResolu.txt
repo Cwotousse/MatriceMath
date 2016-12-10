@@ -1,34 +1,22 @@
-
-
 ┌─┐
-
 │1│ Informations sur le fichier : 
-
 └─┘
-
-
 
 #Nom du fichier         : Matrice.txt
 
-#Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath
+#Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath\MatriceDepart
 
 #Date de création       : 24/11/2016 20:42:47
 
-#Date de modification   : 03/12/2016 17:44:54
+#Date de modification   : 09/12/2016 09:06:10
 
 #Poids du fichier       : 107
 
 
 
-
-
 ┌─┐
-
 │2│ Matrice de départ :
-
 └─┘
-
-
 
 Precision : 4
 
@@ -40,39 +28,20 @@ Precision : 4
 {[21,0000]     [22,0000]     [23,0000]     [24,0000]     [25,0000]}
 
 
-
-
 ┌─┐
-
 │3│ Début de Gauss.
-
 └─┘
-
-
-
-
-Etape N°1
-
-~~~~~~~~~
-
 
 m[2][1] = 6
 
-Ligne 2 recalculée ~> {[0,0000]      [-5,0000]     [-10,0000]    [-15,0000]    [-20,0000]}
-
 m[3][1] = 11
-
-Ligne 3 recalculée ~> {[0,0000]      [-10,0000]    [-20,0000]    [-30,0000]    [-40,0000]}
 
 m[4][1] = 16
 
-Ligne 4 recalculée ~> {[0,0000]      [-15,0000]    [-30,0000]    [-45,0000]    [-60,0000]}
-
 m[5][1] = 21
 
-Ligne 5 recalculée ~> {[0,0000]      [-20,0000]    [-40,0000]    [-60,0000]    [-80,0000]}
 
-Matrice U après l'étape 1 (4 étapes restantes) :
+Matrice U après l'étape 1 (3 étapes restantes) :
 
 
 {[1,0000]      [2,0000]      [3,0000]      [4,0000]      [5,0000]}
@@ -82,35 +51,14 @@ Matrice U après l'étape 1 (4 étapes restantes) :
 {[0,0000]      [-20,0000]    [-40,0000]    [-60,0000]    [-80,0000]}
 
 
-Matrice L après l'étape 1 (4 étapes restantes) :
-
-
-{[1,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
-{[6,0000]      [1,0000]      [0,0000]      [0,0000]      [0,0000]}
-{[11,0000]     [0,0000]      [1,0000]      [0,0000]      [0,0000]}
-{[16,0000]     [0,0000]      [0,0000]      [1,0000]      [0,0000]}
-{[21,0000]     [0,0000]      [0,0000]      [0,0000]      [1,0000]}
-
-
-
-Etape N°2
-
-~~~~~~~~~
-
-
 m[3][2] = 2
-
-Ligne 3 recalculée ~> {[0,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
 
 m[4][2] = 3
 
-Ligne 4 recalculée ~> {[0,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
-
 m[5][2] = 4
 
-Ligne 5 recalculée ~> {[0,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
 
-Matrice U après l'étape 2 (3 étapes restantes) :
+Matrice U après l'étape 2 (2 étapes restantes) :
 
 
 {[1,0000]      [2,0000]      [3,0000]      [4,0000]      [5,0000]}
@@ -118,29 +66,14 @@ Matrice U après l'étape 2 (3 étapes restantes) :
 {[0,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
 {[0,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
 {[0,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
-
-
-Matrice L après l'étape 2 (3 étapes restantes) :
-
-
-{[1,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
-{[6,0000]      [1,0000]      [0,0000]      [0,0000]      [0,0000]}
-{[11,0000]     [2,0000]      [1,0000]      [0,0000]      [0,0000]}
-{[16,0000]     [3,0000]      [0,0000]      [1,0000]      [0,0000]}
-{[21,0000]     [4,0000]      [0,0000]      [0,0000]      [1,0000]}
-
-
-
-Etape N°3
-
-~~~~~~~~~
 
 
 /!\ Nécéssité de pivoter la ligne 3/!\
 
 Le pivot est null
 
-Matrice U après l'étape 3 (2 étapes restantes) :
+
+Matrice U après l'étape 3 (1 étapes restantes) :
 
 
 {[1,0000]      [2,0000]      [3,0000]      [4,0000]      [5,0000]}
@@ -150,25 +83,9 @@ Matrice U après l'étape 3 (2 étapes restantes) :
 {[0,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
 
 
-Matrice L après l'étape 3 (2 étapes restantes) :
-
-
-{[1,0000]      [0,0000]      [0,0000]      [0,0000]      [0,0000]}
-{[6,0000]      [1,0000]      [0,0000]      [0,0000]      [0,0000]}
-{[11,0000]     [2,0000]      [1,0000]      [0,0000]      [0,0000]}
-{[16,0000]     [3,0000]      [0,0000]      [1,0000]      [0,0000]}
-{[21,0000]     [4,0000]      [0,0000]      [0,0000]      [1,0000]}
-
-
-
-
 ┌─┐
-
 │4│ Fin de Gauss.
-
 └─┘
-
-
 
 Affichage des résultats :
 
@@ -177,4 +94,5 @@ Affichage des résultats :
 Déterminant de A : 0
 
 ~> La matrice n'est pas inversible.
+Fin du programme.
 

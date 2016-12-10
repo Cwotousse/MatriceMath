@@ -20,28 +20,35 @@ namespace MatriceMath
         #region Constructeurs
         public Matrice()
         {
-            this.n = 0;
-            this.precision = 0;
-            this.mat[0] = new double[n];
-            this.pivotage = null;
-            this.fichier = new FichierMatrice();
-        }
-        public Matrice(int n, int precision)
-        {
-            this.mat = new double[n][];
-            this.precision = precision;
-            for (int i = 0; i < n; i++) { this.mat[i] = new double[n]; }
-            this.n = n;
-        }
-        public Matrice(int n, string chemin, string fichierResultat, int precision)
-        {
-            this.mat = new double[n][];
-            for (int i = 0; i < n; i++) { this.mat[i] = new double[n]; }
-            this.n = n;
-            this.precision = precision;
-            fichier = new FichierMatrice(chemin, fichierResultat);
+            this.n          = 0;
+            this.precision  = 0;
+            this.mat[0]     = new double[n];
+            this.pivotage   = null;
+            this.fichier    = new FichierMatrice();
         }
 
+        public Matrice(int n, int precision, FichierMatrice FM, ArrayList pivotage)
+        {
+            this.mat        = new double[n][];
+            this.precision  = precision;
+            this.n          = n;
+            this.fichier    = FM;
+            this.pivotage   = pivotage;
+            for (int i = 0; i < n; i++) { this.mat[i] = new double[n]; }
+            
+
+        }
+
+        public Matrice(int n, string cheminArrivee, string fichierResultat, int precision, ArrayList pivotage)
+        {
+            this.mat        = new double[n][];
+            for (int i = 0; i < n; i++) { this.mat[i] = new double[n]; }
+            this.n          = n;
+            this.precision  = precision;
+            this.pivotage   = pivotage;
+            // Car on ne veut faire qu'écrire le résultat, pas de lecture donc pas besoin du fichier de départ
+            fichier         = new FichierMatrice("", "", cheminArrivee, fichierResultat);
+        }
         #endregion
 
         #region Méthodes
@@ -49,6 +56,7 @@ namespace MatriceMath
         {
             try
             {
+                Matrice matriceDepart = this;
                 Matrice matCompactee = Gauss();
                 Matrice L = matCompactee.SplitMatriceLetU('L');
                 Matrice U = matCompactee.SplitMatriceLetU('U');
@@ -56,24 +64,24 @@ namespace MatriceMath
                 double determinantA = U.Determinant(); 
                 fichier.EcritureFichierEtAffichage("Déterminant de A : " + U.Determinant());
                 // si le determinant de A = 0, la matrice n'est pas inversible et on ne va pas plus loin
-                if (determinantA != 0) 
-                {
+                if (determinantA != 0) {                 
                     fichier.EcritureFichierEtAffichage("~> La matrice est inversible.");
-                    // Matrice L
+
+                    // Matrice L-1
                     L.Fichier = this.fichier;
                     Matrice LInverse = L.InversionL();
 
-                    // Matrice U
+                    // Matrice U-1
                     U.Fichier = this.fichier;
                     Matrice UInverse = U.InversionU();
 
-                    // Matrice A inversée 
-                    Matrice AInverse = new Matrice(U.N, this.precision);
+                    // Matrice A-1
+                    Matrice AInverse = new Matrice(U.N, this.precision, U.fichier, U.pivotage);
                     AInverse.Pivotage = matCompactee.Pivotage;
                     AInverse.Fichier = this.fichier;
                     AInverse.CalculerInverseA(UInverse, LInverse);
                 }
-                else { fichier.EcritureFichierEtAffichage("~> La matrice n'est pas inversible."); }
+                else { fichier.EcritureFichierEtAffichage("~> La matrice n'est pas inversible.\nFin du programme."); }
             }
             catch (Exception e)
             {
@@ -87,7 +95,7 @@ namespace MatriceMath
         {
             try
             {
-                Matrice U = new Matrice(n, this.fichier.Chemin, this.fichier.FichierResultat, this.precision);
+                Matrice U = new Matrice(n, this.fichier.CheminNouveauFichier, this.fichier.NomNouveauFichier, this.precision, this.pivotage);
                 Matrice L = InitMatrice(n);
                 U.Mat = this.Mat;
                 // la valeur qui sera insérée dans la matrice
@@ -126,18 +134,13 @@ namespace MatriceMath
                             L.mat[i][k] = m;
                             for (int j = k; j < n && m != 0; j++)
                             {
-                                // m[i][j] = U.mat[i][k] / U.mat[k][k]
-                                // L[i] = L[i] - (m[i][j]*li[k][j])
                                 // ~> application de Gauss
                                 U.mat[i][j] = U.mat[i][j] - (m * U.mat[k][j]);
                             }
-                            fichier.EcritureFichierEtAffichage("Ligne " + (i + 1) + " recalculée ~> " + AfficherLigneMatrice(U.mat[i]));
                         }
                     }
                     fichier.EcritureFichierEtAffichage("\nMatrice U après l'étape " + (k + 1) + " (" + (n - k - 2) + " étapes restantes) :");
                     fichier.EcritureFichierEtAffichage(U.ToString());
-                    fichier.EcritureFichierEtAffichage("Matrice L après l'étape " + (k + 1) + " (" + (n - k - 2) + " étapes restantes) :");
-                    fichier.EcritureFichierEtAffichage(L.ToString());
                 }
                 fichier.afficherEncadre(4, "Fin de Gauss.");
                 fichier.EcritureFichierEtAffichage("Affichage des résultats :");
@@ -153,10 +156,10 @@ namespace MatriceMath
         {
             Matrice kronecker = InitMatrice(n);
             Matrice m = this;
-            Matrice x = new Matrice(n, precision);
+            Matrice x = new Matrice(n, precision, this.fichier, this.pivotage);
             char lettr = 'x';
             fichier.afficherEncadre(5, "-> Inversion de la matrice L");
-            fichier.EcritureFichierEtAffichage("-> Matrice de départ (m):");
+            fichier.EcritureFichierEtAffichage("-> Matrice de départ (L):");
             fichier.EcritureFichierEtAffichage(m.ToString());
             fichier.EcritureFichierEtAffichage("\nMultiplié par la matrice " + lettr + " : ");
             fichier.EcritureFichierEtAffichage(DessinerMatriceXY(lettr));
@@ -168,13 +171,9 @@ namespace MatriceMath
             {
                 for (int j = 0; j < n; j++)
                 {
-                    // Le premier élément on ne fait que recopier
-                    //if (i == 0) { x.mat[i][j] = kronecker.mat[i][j]; }
-                    // Les autres il faut appliquer la formule
-                    //else {
-                        x.mat[i][j] = InversionRecursiveL(kronecker, m, x, i, j);
-                    //}
-                    fichier.EcritureFichierEtAffichage(lettr + ((i + 1) + "") + ((j + 1) + " = ") + x.mat[i][j]);
+                    // On inverse chaque élément de L via la matrice kronecker, L et X.
+                    x.mat[i][j] = InversionRecursiveL(kronecker, m, x, i, j);
+                    fichier.EcritureFichierEtAffichage(lettr + ((i + 1) + "") + ((j + 1) + " = ") + x.mat[i][j] + "\n");
                 }
             }
 
@@ -190,7 +189,7 @@ namespace MatriceMath
             // Contraitement à l'inversion U, nous effectuons les calculs dans l'ordre croissant
             while (k < i)
             {
-                fichier.EcritureFichierEtAffichage("~> Calcul effectué en postition [" + (i + 1) + "," + (j + 1) + "] =>> " + doublX + " - (" + m.mat[i][k] + " * " + x.mat[k][j] + ")");
+                fichier.EcritureFichierEtAffichage("    ~> Calcul de [" + (i + 1) + "," + (j + 1) + "] =>> " + doublX + " - (" + m.mat[i][k] + " * " + x.mat[k][j] + ")");
                 // Application de la formule page 27
                 // Seul l'indice k est changeant.
                 // tant que k < i on continue de soustraire. 
@@ -205,7 +204,7 @@ namespace MatriceMath
         {
             Matrice kronecker = InitMatrice(n);
             Matrice u = this;
-            Matrice y = new Matrice(n, precision);
+            Matrice y = new Matrice(n, precision, this.Fichier, this.pivotage);
             char lettr = 'y';
             fichier.afficherEncadre(7, "-> Inversion de la matrice U");
             fichier.EcritureFichierEtAffichage("-> Matrice de départ (u):");
@@ -225,7 +224,7 @@ namespace MatriceMath
                     if (i == n - 1) { y.mat[i][j] = u.mat[i][i] == 0 ? 0 : kronecker.mat[i][j] / u.mat[i][i]; }
                     // Les autres il faut appliquer la formule page 28 (explication dans la fonction correspondante)
                     else { y.mat[i][j] = InversionU(kronecker, u, y, i, j); }
-                    fichier.EcritureFichierEtAffichage(lettr + ((i + 1) + "") + ((j + 1) + " = ") + y.mat[i][j]);
+                    fichier.EcritureFichierEtAffichage(lettr + ((i + 1) + "") + ((j + 1) + " = ") + y.mat[i][j]+ "\n");
                 }
             }
 
@@ -247,7 +246,7 @@ namespace MatriceMath
 
                 while (k > i)
                 {
-                    fichier.EcritureFichierEtAffichage("~> Calcul effectué en postition [" + (i + 1) + "," + (j + 1) + "] =>> (" + doublY + " - (" + u.mat[i][k] + " * " + y.mat[k][j] + "))/" + u.mat[i][i]);
+                    fichier.EcritureFichierEtAffichage("    ~> Calcul de [" + (i + 1) + "," + (j + 1) + "] =>> (" + doublY + " - (" + u.mat[i][k] + " * " + y.mat[k][j] + "))/" + u.mat[i][i]);
                     // Utilisation de l'algorithme donné page 28 du cours.
                     // Ensuite, de cette valeur on soustrait u.mat[i][k] * y.mat[k][j] toujours divisé par u[i][i]
                     // Qu'importe le nombre d'itérations, il n'y a que K qui évolue jusqu'à ce qu'il soit = à i.
@@ -263,15 +262,15 @@ namespace MatriceMath
             try
             {
                 fichier.afficherEncadre(9, "Calcul de l'inverse de la matrice A : ");
-                Matrice AInverse = this.MultiplierMatrice(UI.mat, LI.mat);
+                Matrice AInverse = UI.MultiplierMatrice(LI.mat);
                 fichier.EcritureFichierEtAffichage(AInverse.ToString());
 
                 // S'il n'y a pas eu de pivotages ça ne sert à rien de montrer la matrice "dépivotée"
                 if (this.Pivotage.Count > 0)
                 {
-                    Matrice AInverseDansLordre = new Matrice(n, precision);
+                    Matrice AInverseDansLordre = new Matrice(n, precision, this.Fichier, this.pivotage);
                     fichier.afficherEncadre(10, "Matrice inverse A remise dans le bon ordre : ");
-                    AInverseDansLordre.mat = DeswapperMatrice(AInverse.mat, this.Pivotage);
+                    AInverseDansLordre.mat = AInverse.DeswapperMatrice(this.Pivotage);
                     fichier.EcritureFichierEtAffichage(AInverseDansLordre.ToString());
                     return AInverseDansLordre;
                 }
@@ -337,7 +336,7 @@ namespace MatriceMath
             catch (Exception) { throw; }
         }
 
-        public double[][] DeswapperMatrice(double[][] matriceADeswapper, ArrayList deswapList)
+        public double[][] DeswapperMatrice(ArrayList deswapList)
         {
             try
             {
@@ -349,27 +348,27 @@ namespace MatriceMath
                     // Ex : 1|2 ~> ces deux lignees ont étés interverties
                     string[] ligneSwappee = el.Split('|');  
                     // On reswap ces lignes.
-                    SwapColonnes(Convert.ToInt32(ligneSwappee[0]), Convert.ToInt32(ligneSwappee[1]), matriceADeswapper);
+                    this.SwapColonnes(Convert.ToInt32(ligneSwappee[0]), Convert.ToInt32(ligneSwappee[1]));
                 }
-                return matriceADeswapper;
+                return this.mat;
             }
             catch (Exception) { throw; }
         }
 
         // Comme on a inversé la matrice c'est la colonne qu'il faut swapper
-        public double[][] SwapColonnes(int a, int b, double[][] matriceASwapper)
+        public double[][] SwapColonnes(int a, int b)
         {
             try
             {
-                for (int i = 0; i < matriceASwapper.Length; i++)
+                for (int i = 0; i < this.mat.Length; i++)
                 {
                     // Swap classique tmp = a, a = b, b = a
-                    double tmp = matriceASwapper[i][a];
-                    matriceASwapper[i][a] = matriceASwapper[i][b];
-                    matriceASwapper[i][b] = tmp;
+                    double tmp = this.mat[i][a];
+                    this.mat[i][a] = this.mat[i][b];
+                    this.mat[i][b] = tmp;
                 }
                 fichier.EcritureFichierEtAffichage("~> Permutation entre la colonne " + (a + 1) + " et " + (b + 1));
-                return matriceASwapper;
+                return this.mat;
             }
             catch (Exception) { throw; }
         }
@@ -387,9 +386,9 @@ namespace MatriceMath
             catch (Exception) { throw; }
         }
 
-        public Matrice MultiplierMatrice(double[][] mat1, double[][] mat2)
+        public Matrice MultiplierMatrice(double[][] mat2)
         {
-            Matrice matriceDeBase = new Matrice(n, this.precision);
+            Matrice matriceDeBase = new Matrice(n, this.precision, this.fichier, this.pivotage);
             for (int i = 0; i < n; i++)
             {
                 for (int k = 0; k < n; k++)
@@ -397,13 +396,22 @@ namespace MatriceMath
                     for (int j = 0; j < n; j++)
                     {
                         // Multiplication de la ligne i par la colonne j 
-                        matriceDeBase.mat[i][k] += mat1[i][j] * mat2[j][k];
+                        matriceDeBase.mat[i][k] += this.mat[i][j] * mat2[j][k];
                     }
                 }
             }
             return matriceDeBase;
         }
 
+        public bool ComparerMatice(double[][] mat2) {
+            bool egal = true;
+            for (int i = 0; i < this.n && egal; i++) {
+                for (int j = 0; j < this.n && egal; j++) {
+                    if (this.mat[i][j] != mat2[i][j]) { egal = false; }
+                }
+            }
+            return egal;
+        }
         // On sépare la matrice précédemment fusionnée
         public Matrice SplitMatriceLetU(char type)
         {
@@ -415,19 +423,34 @@ namespace MatriceMath
                 int max = type.Equals('U') ? n : i;
                 for (int j = type.Equals('U') ? i : 0; j < max; j++) { tmp.mat[i][j] = this.mat[i][j]; }
             }
+            // On retourne la valeur de pivotage.
+            tmp.pivotage = this.Pivotage;
             return tmp;
-
         }
 
         // Initialise la matrice avec une matrice identitié. 
         public Matrice InitMatrice(int taille)
         {
-            Matrice m = new Matrice(taille, this.precision);
+            Matrice m = new Matrice(taille, this.precision, this.fichier, this.pivotage);
             for (int i = 0; i < taille; i++)
             {
                 for (int j = 0; j < taille; j++)
                 {
                     m.Mat[i][j] = j == i ? 1 : 0;
+                }
+            }
+            return m;
+        }
+
+        // Initialise la matrice avec des 0 partout
+        public Matrice InitMatriceZero(int taille)
+        {
+            Matrice m = new Matrice(taille, this.precision, this.fichier, this.pivotage);
+            for (int i = 0; i < taille; i++)
+            {
+                for (int j = 0; j < taille; j++)
+                {
+                    m.Mat[i][j] = 0;
                 }
             }
             return m;

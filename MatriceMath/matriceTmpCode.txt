@@ -1,0 +1,24 @@
+// Matrice A
+                    Matrice A = L.MultiplierMatrice(U.mat);
+                    Matrice ADeSwappee = A;
+                    fichier.EcritureFichierEtAffichage("~> Calcul de la matrice A.");
+                    //On effectue la permutation DANS LE SENS INVERSE
+                    /*for (int i = A.Pivotage.Count - 1; i >= 0; i--)
+                    {
+                        string el = A.Pivotage[i].ToString();
+                        string[] ligneSwappee = el.Split('|');
+                        // On reswap ces lignes.
+                        ADeSwappee.mat = ADeSwappee.SwapColonnes(Convert.ToInt32(ligneSwappee[0]), Convert.ToInt32(ligneSwappee[1]), ADeSwappee.mat , false);
+                    }*/
+                    ADeSwappee.mat = A.DeswapperMatrice(A.pivotage);
+                    fichier.EcritureFichierEtAffichage("~> Comparaison de la matrice A avec la matrice de depart : " + ADeSwappee.ComparerMatice(matriceDepart.mat));
+                    fichier.EcritureFichierEtAffichage("Matrice A : ");
+                    fichier.EcritureFichierEtAffichage(ADeSwappee.ToString());
+
+                    fichier.EcritureFichierEtAffichage("Matrice de départ : ");
+                    fichier.EcritureFichierEtAffichage(matriceDepart.ToString());
+                    if (ADeSwappee.ComparerMatice(matriceDepart.mat))
+                    {
+
+ }
+                    else { fichier.EcritureFichierEtAffichage("~> La matrice de départ et la matrice A ne sont pas égales.\nFin du programme."); }

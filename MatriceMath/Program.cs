@@ -14,7 +14,6 @@ namespace MatriceMath
             {
                 Menu m = new Menu();
                 m.MenuRedirection(args[0]);
-                System.Console.ReadKey();
             }
             catch (Exception e) {
                 Console.WriteLine(e.Message);

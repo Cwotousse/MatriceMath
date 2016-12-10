@@ -10,122 +10,86 @@ namespace MatriceMath
     class FichierMatrice
     {
         #region Variables
-        private string chemin;
-        private string fichierResultat;
+        private string cheminFichierDeBase;
+        private string cheminNouveauFichier;
+        private string nomFichierDeBase;
+        private string nomNouveauFichier;
+        private string urlDepart;
+        private string urlArrivee;
         #endregion
 
         #region Constructeurs
         public FichierMatrice() { }
-        public FichierMatrice(string chemin) { this.chemin = chemin; }
-        public FichierMatrice(string chemin, string fichierResultat)
+        public FichierMatrice(string cheminFichierDeBase, string nomFichierDeBase)
         {
-            this.chemin = chemin;
-            this.fichierResultat = fichierResultat;
-        }
-        #endregion
-
-        #region test
-        /*public void fonctionDeTest(string nomFich) => afficherMatrice(lireMatrice(nomFich)); 
-
-        public double[][] lireMatrice(string nomFich)
-        {
-            try
-            {
-                Console.Clear();
-                Console.WriteLine("Lecture du fichier...");
-                string path = System.IO.Directory.GetCurrentDirectory();
-                path += "\\" + nomFich;
-                Console.WriteLine("Le fichier contenant la matrice est : {0}", path);
-
-
-                 Read each line of the file into a string array. Each element
-                 of the array is one line of the file.
-                string[] lignes = System.IO.File.ReadAllLines(@path);
-                string[][] nbrElem = new string[(lignes.Length - 5)][];
-                double[][] matrice = new double[(lignes.Length - 5)][];
-                for (int i = 5; i < lignes.Length; i++)
-                {
-                    Console.WriteLine(lignes[i]);
-                    
-                    nbrElem[i-5] = lignes[i].Split('|');
-                    matrice[i-5] = Array.ConvertAll(nbrElem[i-5], item => Convert.ToDouble(item));
-                }
-
-                return matrice;
-
-
-                return Array.ConvertAll(nbrElem, item => (int)item);
-            }
-            catch (Exception) { throw; }
+            this.cheminFichierDeBase = cheminFichierDeBase;
+            this.nomFichierDeBase = nomFichierDeBase;
+            urlDepart = cheminFichierDeBase + "\\" + nomFichierDeBase;
         }
 
-       public void afficherMatrice(double[][] matrice) {
-            try
-            {
-                for (int i = 0; i < matrice.Length; i++)
-                {
-                    for (int j = 0; j < matrice[i].Length; j++)
-                    {
-                        Console.Write(matrice[i][j]);
-                        Console.Write("  ");
-                    }
-                    Console.WriteLine();
-                }
-            }
-            catch (Exception) { throw; }
-       }*/
+        public FichierMatrice(string urlDepart) {
+            this.urlDepart = urlDepart;
+        }
+        public FichierMatrice(string cheminFichierDeBase, string nomFichierDeBase, string cheminNouveauFichier, string nomNouveauFichier)
+        {
+            this.cheminFichierDeBase    = cheminFichierDeBase;
+            this.nomFichierDeBase       = nomFichierDeBase;
+            this.cheminNouveauFichier   = cheminNouveauFichier;
+            this.nomNouveauFichier      = nomNouveauFichier;
+            urlDepart                   = cheminFichierDeBase + "\\" + nomFichierDeBase;
+            urlArrivee                  = cheminNouveauFichier + "\\" + nomNouveauFichier;
+        }
         #endregion
 
         #region Méthodes
         // Methode esthétique pour afficher un encadré
         public void afficherEncadre(int nombre, string texte)
         {
-            EcritureFichierEtAffichage("");
-            EcritureFichierEtAffichage("┌─┐");
-            EcritureFichierEtAffichage("│" + nombre + "│ " + texte);
-            EcritureFichierEtAffichage("└─┘");
-            EcritureFichierEtAffichage("");
+            EcritureFichierEtAffichage("┌─┐\n│"+ nombre + "│ " + texte + "\n└─┘");
         }
 
         // Utile juste pour réduire le nombre de lignes de code. Car ce qui doit être affiché doit aussi l'être dans le fichier.
         public void EcritureFichierEtAffichage(string elem)
         {
-            Console.WriteLine(elem);
-            WriteFile(elem + "\r\n");
+            try
+            {
+                Console.WriteLine(elem);
+                WriteFile(elem + "\r\n");
+            }
+            catch (Exception) { throw; }
         }
 
         // écrit une ligne  dans le fichier résultat
         public void WriteFile(string s)
         {
-            string fullrep;
-            // Si le chemin n'est pas null on ajoute le fichier créé à la fin
-            if (String.IsNullOrEmpty(Chemin)) { fullrep = Chemin + "\\" + fichierResultat; }
-            else { fullrep = fichierResultat; }
-            using (StreamWriter str_writer = new StreamWriter(fullrep, true))
+            try
             {
-                //Ecriture de la ligne reçue en param dans le fichier
-                str_writer.WriteLine(s);
+                // Si l'url d'arrivée est null on assigne dans la valeur urlPourEcrire 
+                string urlPourEcrire = urlArrivee ?? urlDepart;
+                using (StreamWriter str_writer = new StreamWriter(urlPourEcrire, true))
+                {
+                    //Ecriture de la ligne reçue en param dans le fichier d'arrivée
+                    str_writer.WriteLine(s);
+                }
             }
+            catch (Exception) { throw; }         
         }
 
         // Lecture d'un fichier txt contenant les informations permettant de créer une matrice 
-        public Matrice ReadFile(string fichier)
+        public Matrice ReadFile()
         {
-            string fullrep;
             string[] termes;
             int dimensionMatrice;
             int precision;
 
-            // Si le chemin n'est pas null on ajoute le fichier créé à la fin
-            if (String.IsNullOrEmpty(Chemin)) { fullrep = Chemin + "\\" + fichier; }
-            else { fullrep = fichier; }
             try
             {
                 Console.Clear();
-                Console.WriteLine("Lecture du fichier...");
+                if (File.Exists(urlArrivee)) { File.Delete(urlArrivee); }
                 afficherEncadre(1, "Informations sur le fichier : ");
-                FileInfo infoFichier = new FileInfo(fullrep);
-                EcritureFichierEtAffichage("#Nom du fichier         : " + fichier);
+                // On donne l'url du fichier de départ
+                FileInfo infoFichier = new FileInfo(urlDepart);
+                EcritureFichierEtAffichage("#Nom du fichier         : " + nomFichierDeBase);
                 EcritureFichierEtAffichage("#Emplacement            : " + infoFichier.DirectoryName);
                 EcritureFichierEtAffichage("#Date de création       : " + infoFichier.CreationTime);
                 EcritureFichierEtAffichage("#Date de modification   : " + infoFichier.LastWriteTime);
@@ -134,14 +98,15 @@ namespace MatriceMath
 
                 //Read each line of the file into a string array. Each element
                 // of the array is one line of the file.
-                string[] lignes = System.IO.File.ReadAllLines(@fullrep);
+                // On lit les lignes du fichier de départ
+                string[] lignes = System.IO.File.ReadAllLines(urlDepart);
                 // La dimension, on retire 3 car les 3 premières lignes sont utilisées pour affiches d'autres informations
                 dimensionMatrice = lignes.Length - 3;
                 // On récupère la précision à la ligne 1 du fichier
                 precision = Convert.ToInt32(lignes[1]);
 
-                // nouvelles matrice avec la précision et la dimension connue.
-                Matrice m = new Matrice(dimensionMatrice, precision);
+                // nouvelles matrice avec la précision et la dimension connue. Aucune pivotation.
+                Matrice m = new Matrice(dimensionMatrice, precision, this, new System.Collections.ArrayList());
                 for (int i = 3; i < lignes.Length; i++)
                 {
                     termes = lignes[i].Split('|');
@@ -151,7 +116,6 @@ namespace MatriceMath
                         m.Mat[i-3][j] = double.Parse(termes[j]);
                     }
                 }
-
                 return m;
             }
             catch (Exception) { throw; }
@@ -159,16 +123,25 @@ namespace MatriceMath
         #endregion
 
         #region Propriétés
-        public string Chemin
+        public string CheminFichierDeBase
         {
-            get { return chemin; }
-            set { chemin = value; }
+            get { return cheminFichierDeBase; }
+            set { cheminFichierDeBase = value; }
         }
-
-        public string FichierResultat
+        public string CheminNouveauFichier
         {
-            get { return fichierResultat; }
-            set { fichierResultat = value; }
+            get { return cheminNouveauFichier; }
+            set { cheminNouveauFichier = value; }
+        }
+        public string NomFichierDeBase
+        {
+            get { return nomFichierDeBase; }
+            set { nomFichierDeBase = value; }
+        }
+        public string NomNouveauFichier
+        {
+            get { return nomNouveauFichier; }
+            set { nomNouveauFichier = value; }
         }
         #endregion
     }

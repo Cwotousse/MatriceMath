@@ -1,22 +1,69 @@
-
-
 ┌─┐
-
 │1│ Informations sur le fichier : 
-
 └─┘
-
-
 
 #Nom du fichier         : test.txt
 
-#Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath
+#Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath\MatriceDepart
 
 #Date de création       : 06/12/2016 21:57:45
 
-#Date de modification   : 07/12/2016 00:01:10
+#Date de modification   : 07/12/2016 21:29:26
 
-#Poids du fichier       : 51
+#Poids du fichier       : 52
 
 
+
+┌─┐
+│2│ Matrice de départ :
+└─┘
+
+Precision : 2
+
+
+{[5,00]      [2,00]      [1,00]}
+{[1,00]      [3,00]      [5,00]}
+{[1,00]      [3,00]      [5,00]}
+
+
+┌─┐
+│3│ Début de Gauss.
+└─┘
+
+m[2][1] = 0,2
+
+m[3][1] = 0,2
+
+
+Matrice U après l'étape 1 (1 étapes restantes) :
+
+
+{[5,00]      [2,00]      [1,00]}
+{[0,00]      [2,60]      [4,80]}
+{[0,00]      [2,60]      [4,80]}
+
+
+m[3][2] = 1
+
+
+Matrice U après l'étape 2 (0 étapes restantes) :
+
+
+{[5,00]      [2,00]      [1,00]}
+{[0,00]      [2,60]      [4,80]}
+{[0,00]      [0,00]      [0,00]}
+
+
+┌─┐
+│4│ Fin de Gauss.
+└─┘
+
+Affichage des résultats :
+
+-> Il n'y a pas eu de permutation.
+
+Déterminant de A : 0
+
+~> La matrice n'est pas inversible.
+Fin du programme.
 

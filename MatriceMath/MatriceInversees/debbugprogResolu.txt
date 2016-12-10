@@ -8,7 +8,7 @@
 
 
 
-#Nom du fichier         : rhcp.txt
+#Nom du fichier         : debbugprog.txt
 
 #Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath
 

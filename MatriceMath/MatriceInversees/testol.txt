@@ -1,0 +1,15 @@
+#Precision : 
+1
+#Matrice : 
+1|2
+21|12
+
+
+┌─┐
+
+│1│ Informations sur le fichier : 
+
+└─┘
+
+
+

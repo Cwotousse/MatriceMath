@@ -1,0 +1,225 @@
+
+
+┌─┐
+
+│1│ Informations sur le fichier : 
+
+└─┘
+
+
+
+#Nom du fichier         : zefsdfsdf.txt
+
+#Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath\MatriceDepart
+
+#Date de création       : 09/12/2016 09:45:35
+
+#Date de modification   : 09/12/2016 09:45:44
+
+#Poids du fichier       : 41
+
+
+
+
+
+┌─┐
+
+│2│ Matrice de départ :
+
+└─┘
+
+
+
+Precision : 1
+
+
+{[2,0]      [3,0]}
+{[5,0]      [1,0]}
+
+
+
+
+┌─┐
+
+│3│ Début de Gauss.
+
+└─┘
+
+
+
+m[2][1] = 2,5
+
+Ligne 2 recalculée ~> {[0,0]      [-6,5]}
+
+
+Matrice U après l'étape 1 (0 étapes restantes) :
+
+
+{[2,0]      [3,0]}
+{[0,0]      [-6,5]}
+
+
+Matrice L après l'étape 1 (0 étapes restantes) :
+
+
+{[1,0]      [0,0]}
+{[2,5]      [1,0]}
+
+
+
+
+┌─┐
+
+│4│ Fin de Gauss.
+
+└─┘
+
+
+
+Affichage des résultats :
+
+-> Il n'y a pas eu de permutation.
+
+Déterminant de A : -13
+
+~> La matrice est inversible.
+
+
+
+┌─┐
+
+│5│ -> Inversion de la matrice L
+
+└─┘
+
+
+
+-> Matrice de départ (m):
+
+
+{[1,0]      [0,0]}
+{[2,5]      [1,0]}
+
+
+
+Multiplié par la matrice x : 
+
+{x11       x12}
+{x21       x22}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,0]      [0,0]}
+{[0,0]      [1,0]}
+
+
+
+-> Début de l'inversion
+
+x11 = 1
+
+x12 = 0
+
+~> Calcul effectué en postition [2,1] =>> 0 - (2,5 * 1)
+
+x21 = -2,5
+
+~> Calcul effectué en postition [2,2] =>> 1 - (2,5 * 0)
+
+x22 = 1
+
+
+
+┌─┐
+
+│6│ Matrice x après inversion : 
+
+└─┘
+
+
+
+
+{[1,0]      [0,0]}
+{[-2,5]     [1,0]}
+
+
+
+
+┌─┐
+
+│7│ -> Inversion de la matrice U
+
+└─┘
+
+
+
+-> Matrice de départ (u):
+
+
+{[2,0]      [3,0]}
+{[0,0]      [-6,5]}
+
+
+
+Multiplié par la matrice y : 
+
+{y11       y12}
+{y21       y22}
+
+
+
+Egal (Kronecker) : 
+
+
+{[1,0]      [0,0]}
+{[0,0]      [1,0]}
+
+
+
+-> Début de l'inversion
+
+y21 = 0
+
+y22 = -0,153846153846154
+
+~> Calcul effectué en postition [1,1] =>> (0,5 - (3 * 0))/2
+
+y11 = 0,5
+
+~> Calcul effectué en postition [1,2] =>> (0 - (3 * -0,153846153846154))/2
+
+y12 = 0,230769230769231
+
+
+
+┌─┐
+
+│8│ Matrice y après inversion : 
+
+└─┘
+
+
+
+
+{[0,5]      [0,2]}
+{[0,0]      [-0,2]}
+
+
+
+
+┌─┐
+
+│9│ Calcul de l'inverse de la matrice A : 
+
+└─┘
+
+
+
+
+{[-0,1]     [0,2]}
+{[0,4]      [-0,2]}
+
+

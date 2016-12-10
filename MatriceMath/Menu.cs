@@ -27,6 +27,8 @@ namespace MatriceMath
                 {
                     choix = AfficherMenu();
                     nomFichierDeBase = nomFich;
+                    cheminFichierDeBase = System.IO.Directory.GetCurrentDirectory();
+                    CheminNouveauFichier = cheminFichierDeBase + "\\..\\MatriceInversees";
                     if (choix < 4 && choix > 0)
                     {
                         switch (choix)
@@ -36,8 +38,12 @@ namespace MatriceMath
                             case 3: ConstruireNouvelleMatrice(); break;
 
                         }
-                        getNomfichierDestination();
+                        // Le nouveau fichier -> l'ancien - .txt + Resolu.txt
+                        nomNouveauFichier = nomFichierDeBase.Substring(0, nomFichierDeBase.Length - 4) + "Resolu.txt";
                         AppelAlgoLU();
+                        System.Console.ReadKey();
+                        if (AfficherMenuRecommencer() == 1) { MenuRedirection(nomFich); }
+                        
                     }
                     else { Console.Clear(); }
                 } while (choix > 3 || choix < 0);
@@ -62,19 +68,30 @@ namespace MatriceMath
             catch (Exception) { throw; }
         }
 
+        public int AfficherMenuRecommencer()
+        {
+            try
+            {
+                Console.Clear();
+                Console.WriteLine("Voulez-vous recommencer ? ");
+                Console.WriteLine();
+                Console.WriteLine("1. Oui");
+                Console.WriteLine("2. Non");
+                Console.WriteLine("Choix : ");
+                return Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception) { throw; }
+        }
         public void AppelAlgoLU() {
             Console.Clear();
             try
             {
-                FichierMatrice FM = new FichierMatrice(nomFichierDeBase, cheminNouveauFichier);
-                Matrice matrice;
 
-                // Lecture du fichier
-                matrice = FM.ReadFile(nomFichierDeBase);
-                // On initialise le fichier avec l'instance créée plus haut
-                matrice.Fichier = FM;
+                FichierMatrice FM = new FichierMatrice(CheminFichierDeBase, NomFichierDeBase, CheminNouveauFichier, NomNouveauFichier);
+                // Lecture du fichier, initialisation de la matrice.
+                Matrice matriceDepart = FM.ReadFile();
                 //On calcule LU
-                matrice.ResolutionInversionMatriceLU();
+                matriceDepart.ResolutionInversionMatriceLU();
             }
             catch (IndexOutOfRangeException)
             {
@@ -93,17 +110,15 @@ namespace MatriceMath
             try
             {
                 string precision;
-                string chemin = System.IO.Directory.GetCurrentDirectory();
                 // La personne entre le nom du fichier et on enregistre la nouvelle matrice à l'intérieur de celle-ci
                 Console.WriteLine("Entrez le nom de votre fichier : ");
                 string nomFichier = Console.ReadLine();
-                chemin += "\\" + nomFichier + ".txt";
                 // On retourne le chemin pour qu'on puisse lire le fichier
-                cheminFichierDeBase = chemin;
+                 
                 nomFichierDeBase = nomFichier + ".txt";
                 // On supprime le fichier existant si les noms sont les mêmes
                 if (File.Exists(cheminFichierDeBase)) { File.Delete(cheminFichierDeBase); }
-                FichierMatrice fichier = new FichierMatrice(nomFichierDeBase, cheminFichierDeBase);
+                FichierMatrice fichier = new FichierMatrice(cheminFichierDeBase, nomFichierDeBase);
                 
                 Console.Clear();
 
@@ -126,7 +141,7 @@ namespace MatriceMath
                 fichier.WriteFile("#Matrice : ");
                 for (int i = 0; i < dimension; i++)
                 {
-                    for (int j = 0; j < dimension; j++)
+                    for (int j = 0; j < dimension; j++) 
                     {
                         // La ligne commence à 5
                         Console.Write("#[" + (i + 1) + "][" + (j + 1) + "] <~ ");
@@ -150,43 +165,35 @@ namespace MatriceMath
             {
                 System.Console.Clear();
                 List<string> repertoire = new List<String>();
-                string chemin = System.IO.Directory.GetCurrentDirectory();
-                DirectoryInfo d = new DirectoryInfo(chemin);//Assuming Test is your Folder
+                //string chemin = System.IO.Directory.GetCurrentDirectory();
+                // Accède au dossier ou se trouve les .txt
+                DirectoryInfo d = new DirectoryInfo(CheminFichierDeBase);//Assuming Test is your Folder
                 FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
                 int i = 1;
                 foreach (FileInfo file in Files)
                 {
                     Console.WriteLine("[" + i + "]" + file.Name);
+                    // Contient la liste de tous les éléments .txt trouvés.
                     repertoire.Add(file.Name);
                     i++;
                 }
                 Console.WriteLine("Quel fichier voulez-vous charger (entrez son n°) : ");
                 // On rentre le nom de fichier contenu dans "repertoire" à l'indice choisi par l'utilisateur
-                //AppelAlgoLU(repertoire.ElementAt(Convert.ToInt32(Console.ReadLine()) - 1));
-                cheminFichierDeBase = chemin;
                 nomFichierDeBase = repertoire.ElementAt(Convert.ToInt32(Console.ReadLine()) - 1);
+                //cheminFichierDeBase = chemin;
             }
             catch(Exception) { throw; }
         }
 
-        public void getNomfichierDestination() {
+       /* public void getNomfichierDestination() {
             try
             {
-                string chemin = System.IO.Directory.GetCurrentDirectory();
-
-                // On retire le premier .txt pour l'ajouter à la fin.
-                string pattern = @".txt";
-                Regex rgx = new Regex(pattern);
-                string nomFichierDeBaseSansTxt= rgx.Replace(nomFichierDeBase, "");
-                nomNouveauFichier = nomFichierDeBaseSansTxt + "Resolu";
-                chemin += "\\MatriceInversees\\" + nomNouveauFichier + ".txt";
-                cheminNouveauFichier = chemin;
+                nomNouveauFichier = nomFichierDeBase.Substring(0, nomFichierDeBase.Length -4) + "Resolu.txt";
                 // On écrase l'ancien fichier pour ne pas écrire à la suite.
                 if (File.Exists(CheminNouveauFichier)) { File.Delete(CheminNouveauFichier); }
-
             }
             catch (Exception) { throw; }
-        }
+        }*/
 
         #endregion
 
