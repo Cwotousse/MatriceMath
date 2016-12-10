@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartWorkingDirectory>F:\BAC3\Math\MatriceMath\MatriceMath\MatriceDepart</StartWorkingDirectory>
+    <StartWorkingDirectory>MatriceDepart</StartWorkingDirectory>
     <StartArguments>Matrice.txt</StartArguments>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
   </PropertyGroup>
   <PropertyGroup>
     <PublishUrlHistory>publier\</PublishUrlHistory>
@@ -13,5 +14,10 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>fr-FR</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartWorkingDirectory>MatriceDepart</StartWorkingDirectory>
+    <StartArguments>Matrice.txt</StartArguments>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
   </PropertyGroup>
 </Project>

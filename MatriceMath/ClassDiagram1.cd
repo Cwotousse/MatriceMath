@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MatriceMath.FichierMatrice">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="4" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QBAAAAAAAAAAQAIAAAAAAAQIEAQACAAIEAAgCCAAAAA=</HashCode>
       <FileName>FichierMatrice.cs</FileName>
@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MatriceMath.Menu">
-    <Position X="0.5" Y="2.25" Width="1.5" />
+    <Position X="0.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QBEAAAAAAAAAAAIACgAAACAIEAQAAAAKAAEgACAAAAA=</HashCode>
       <FileName>Menu.cs</FileName>

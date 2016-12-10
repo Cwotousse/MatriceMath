@@ -4,7 +4,7 @@
 
 #Nom du fichier         : Matrice6x6.txt
 
-#Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath\MatriceDepart
+#Emplacement            : F:\BAC3\Math\MatriceMath\MatriceMath\bin\Release\MatriceDepart
 
 #Date de création       : 03/12/2016 16:33:54
 
